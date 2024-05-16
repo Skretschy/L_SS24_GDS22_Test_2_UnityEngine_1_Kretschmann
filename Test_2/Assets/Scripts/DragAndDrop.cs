@@ -6,7 +6,15 @@ public class DragAndDrop : MonoBehaviour
 {
     private Vector3 mousePosition;
     private Color col;
+    private bool isDragging = false;
 
+    void Update()
+    {
+        if(isDragging && Input.GetMouseButtonDown(1))
+        {
+            RotateObject();
+        }
+    }
     private Vector3 GetMousePos()
     {
         print("calculate now");
@@ -19,6 +27,7 @@ public class DragAndDrop : MonoBehaviour
         col = GetComponent<MeshRenderer>().material.color;
         GetComponent<MeshRenderer>().material.color = Color.yellow;
         GetComponent<Rigidbody>().isKinematic = true;
+        isDragging = true;
     }
 
     private void OnMouseDrag()
@@ -30,5 +39,11 @@ public class DragAndDrop : MonoBehaviour
     {
         GetComponent<MeshRenderer>().material.color = col;
         GetComponent<Rigidbody>().isKinematic = false;
+        isDragging= false;
+    }
+
+    private void RotateObject()
+    {
+        transform.Rotate(Vector3.forward, 45f);
     }
 }
