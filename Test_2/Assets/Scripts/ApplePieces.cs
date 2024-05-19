@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class ApplePieces : MonoBehaviour
 {
-    private Vector3 RightPosition;
-    public bool InRightPosition;
+    private Vector3 rightPosition;
+    public bool inRightPosition = false;
     private Quaternion rightRotation;
-    public bool inRightRotation;
+    public bool inRightRotation = false;
+
+    private Vector3 initialPosition;
+    private Quaternion initialRotation;
 
     private void Start()
     {
-        RightPosition = transform.position;
+        initialPosition = transform.position;
+        initialRotation = transform.rotation;
+
+        rightPosition = transform.position;
         transform.position = new Vector3(Random.Range(-3f, -6.5f), Random.Range(2.5f, -2.5f));
 
         rightRotation = transform.rotation;
@@ -19,12 +25,19 @@ public class ApplePieces : MonoBehaviour
     }
     void Update()
     {
-        if (Vector3.Distance(transform.position, RightPosition) < 0.5f && Quaternion.Angle(transform.rotation, rightRotation) < 1f)
+        if (Vector3.Distance(transform.position, rightPosition) < 0.5f && Quaternion.Angle(transform.rotation, rightRotation) < 1f)
         {
-            transform.position = RightPosition;
-            InRightPosition = true;
+            transform.position = rightPosition;
+            inRightPosition = true;
             transform.rotation = rightRotation;
             inRightRotation = true;
+
+            Logic.Instance.CheckAllPieces();
+        }
+        else
+        {
+            inRightPosition = false;
+            inRightRotation = false;
         }
     }
 
