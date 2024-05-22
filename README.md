@@ -6,3 +6,6 @@ Unity Oberfläche
 
 Gameplay Video
 https://github.com/Skretschy/L_SS24_GDS22_Test_2_UnityEngine_1_Kretschmann/assets/150423959/f309c099-048a-4f08-a401-c446c5bcd8cb
+
+HTML Link:
+https://skretschy.github.io/L_SS24_GDS22_Test_2_UnityEngine_1_Kretschmann/
